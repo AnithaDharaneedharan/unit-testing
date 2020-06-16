@@ -1,30 +1,36 @@
-const orderTotal = require('./order-total.js');
+const orderTotal = require("./order-total.js");
 
-it('works', () => {
-  expect(1).toBe(1)
-})
+it("quantity", () =>
+  expect(
+    orderTotal({
+      items: [{ name: "Dragon", price: 2, quantity: 3 }],
+    })
+  ).toBe(6));
 
-if (orderTotal({
-    items: [
-        {name: 'Dragon', price: 2, quantity: 3}
-    ]
-}) !== 6) {
-    throw new Error('check fail : quantity !')
-}
+it("No quantity specified", () =>
+  expect(
+    orderTotal({
+      items: [{ name: "Dragon", price: 3 }],
+    })
+  ).toBe(3));
 
-if (orderTotal({
-    items: [
-        {name: 'Dragon', price: 3}
-    ]
-}) !== 3) {
-    throw new Error('check fail : quantity !')
-}
+it("more than 1 array element happy path", () =>
+  expect(
+    orderTotal({
+      items: [
+        { name: "Dragon food", price: 8, quantity: 1 },
+        { name: "Dragon cage", price: 800, quantity: 1 },
+      ],
+    })
+  ).toBe(808));
 
-if (orderTotal({
-    items: [
-        {name: 'Dragon food', price: 8, quantity: 1},
-        {name: 'Dragon cage', price: 800, quantity: 1}
-    ]
-}) !== 808) {
-    throw new Error('check fail : quantity !')
-}
+it("happy path ex 2", () => {
+  expect(
+    orderTotal({
+      items: [
+        { name: "Dragon food", price: 20, quantity: 1 },
+        { name: "Dragon cage", price: 40, quantity: 1 },
+      ],
+    })
+  ).toBe(60);
+});

@@ -4,7 +4,8 @@
   "description": "",
   "main": "code-and-test.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "watch": "jest --watch *.js"
   },
   "author": "",
   "license": "ISC",
